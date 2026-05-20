@@ -89,9 +89,16 @@ This section tracks the nextgen Chart.js spike against the legacy wiki requireme
 | Requirement area | Legacy requirement summary | Spike status |
 |---|---|---|
 | Measure filter | Select the lab/safety measure displayed. | Implemented in spike. |
-| Configured filters | Filter by pre-selected characteristics. | Partial: treatment group and sex filters implemented. |
+| Configured filters | Filter by pre-selected characteristics. | Expanded: treatment group and sex filters implemented; group selector supports ARM/SEX/RACE display grouping. |
 | Participant count | Display participants shown and percentage of total. | Implemented in spike. |
-| Y-axis limits | Set lower and upper y-axis limits. | Implemented in spike. |
-| Results over time | Display measure summaries over visit/time, usually by group. | Partial: mean by visit and treatment group implemented. |
-| Linked listing | View filtered records underlying the plot. | Partial: click path shows filtered record listing. |
-| Regression coverage | Validate measure/filter/y-axis changes, participant count, tooltip/listing, and grouping. | Not started; requires automated browser tests. |
+| Y-axis limits | Set lower and upper y-axis limits. | Implemented with lower/upper inputs and reset-limits button. |
+| Reset limits | Reset lower/upper y-axis limits to data-driven defaults. | Implemented. |
+| Visits without data | Toggle visits with no data. | Implemented by expanding visit domain to all visits for the selected measure. |
+| Unscheduled visits | Toggle unscheduled visits. | Implemented when unscheduled visit labels are present. |
+| Box plots | Toggle distribution box overlays. | Implemented as IQR floating bars. |
+| Violin plots | Toggle distribution shape overlays. | Partial: approximated with 5–95% range bands pending true density rendering. |
+| Outliers | Toggle outlier points outside 5th/95th percentiles. | Implemented. |
+| Scale | Toggle linear/log y-axis scale. | Implemented. |
+| Results over time | Display measure summaries over visit/time, usually by group. | Expanded: mean by visit plus selectable grouping, IQR box overlay, 5–95% range overlay, and outlier layer. |
+| Linked listing | View filtered records underlying the plot. | Implemented: chart click opens filtered record listing. |
+| Regression coverage | Validate measure/filter/y-axis changes, participant count, tooltip/listing, and grouping. | Not started; requires automated browser tests. Current demo has manual browser smoke evidence. |
