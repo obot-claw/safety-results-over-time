@@ -1,0 +1,226 @@
+{
+    "title": "settings",
+    "description": "JSON schema for the configuration of safety-results-over-time",
+    "overview": "The most straightforward way to customize the Safety Results Over Time is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Safety Results Over Time is a Webcharts `chart` object, many default Webcharts settings are set in the [defaultSettings.js file](https://github.com/RhoInc/safety-results-over-time/blob/master/src/defaultSettings.js) as [described below](#webcharts-settings). Refer to the [Webcharts documentation](https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration) for more details on these settings.\nIn addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Safety Results Over Time to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.",
+    "version": "2.3.2",
+    "type": "object",
+    "data-guidelines": "The Safety Results Over Time accepts [JSON](https://en.wikipedia.org/wiki/JSON) data of the format returned by [`d3.csv()`](https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md). The renderer visualizes clinical medical signs data with **one row per participant per visit per medical sign** plus the required variables specified below.",
+    "data-structure": "one record per participant per visit per medical sign",
+    "properties": {
+        "id_col": {
+            "title": "ID",
+            "description": "name of variable that captures unique identifier of participant",
+            "default": "USUBJID",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "character",
+            "required": true
+        },
+        "time_settings": {
+            "title": "Time settings",
+            "description": "visit metadata",
+            "type": "object",
+            "properties": {
+                "value_col": {
+                    "title": "Visit",
+                    "description": "name of variable that captures visit name",
+                    "default": "VISIT",
+                    "type": "string",
+                    "data-mapping": true,
+                    "data-type": "character",
+                    "required": true
+                },
+                "label": {
+                    "title": "Visit variable label",
+                    "default": "Visit",
+                    "type": "string"
+                },
+                "order_col": {
+                    "title": "Visit Order",
+                    "description": "name of variable that captures visit order",
+                    "default": "VISITNUM",
+                    "type": "string",
+                    "data-mapping": true,
+                    "data-type": "numeric",
+                    "required": false
+                },
+                "order": {
+                    "title": "Visit order",
+                    "type": "array",
+                    "items": {
+                        "title": "Visit value",
+                        "type": "string"
+                    }
+                },
+                "rotate_tick_labels": {
+                    "title": "Rotate tick labels 45 degrees?",
+                    "default": true,
+                    "type": "boolean"
+                },
+                "vertical_space": {
+                    "title": "Rotated tick label spacing",
+                    "default": 100,
+                    "type": "number"
+                }
+            },
+            "data-mapping": true
+        },
+        "measure_col": {
+            "title": "Measure",
+            "description": "name of variable that captures measure name",
+            "default": "TEST",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "character",
+            "required": true
+        },
+        "unit_col": {
+            "title": "Unit",
+            "description": "name of variable that captures measure unit",
+            "default": "STRESU",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "character",
+            "required": false
+        },
+        "value_col": {
+            "title": "Result",
+            "description": "name of variable that captures measure result",
+            "default": "STRESN",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "numeric",
+            "required": true
+        },
+        "normal_col_low": {
+            "title": "Lower Limit of Normal",
+            "description": "name of variable that captures LLN of measure",
+            "default": "STNRLO",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "numeric",
+            "required": false
+        },
+        "normal_col_high": {
+            "title": "Upper Limit of Normal",
+            "description": "name of variable that captures ULN of measure",
+            "default": "STNRHI",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "numeric",
+            "required": false
+        },
+        "start_value": {
+            "title": "Initially Displayed Measure",
+            "description": "value of measure to display initially",
+            "type": "string"
+        },
+        "filters": {
+            "title": "Filters",
+            "description": "an array of filter variables and associated metadata",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "value_col": {
+                        "title": "Variable name",
+                        "type": "string"
+                    },
+                    "label": {
+                        "title": "Variable label",
+                        "type": "string"
+                    }
+                }
+            },
+            "data-mapping": true,
+            "data-type": "either",
+            "required": false
+        },
+        "groups": {
+            "title": "Groupings",
+            "description": "an array of grouping variables and associated metadata",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "value_col": {
+                        "title": "Variable name",
+                        "type": "string"
+                    },
+                    "label": {
+                        "title": "Variable label",
+                        "type": "string"
+                    }
+                }
+            },
+            "data-mapping": true,
+            "data-type": "either",
+            "required": false
+        },
+        "color_by": {
+            "title": "Grouping",
+            "description": "name of variable that captures grouping; defaults to first item in `groups` setting; set to `'srot_none'` to display chart without grouping on initialization",
+            "type": "string",
+            "data-mapping": true,
+            "data-type": "character",
+            "required": false
+        },
+        "boxplots": {
+            "title": "Display box plots?",
+            "description": "controls initial display of box plots",
+            "default": true,
+            "type": "boolean"
+        },
+        "outliers": {
+            "title": "Display outliers?",
+            "description": "controls initial display of outliers outside the 5th and 95th percentiles",
+            "default": true,
+            "type": "boolean"
+        },
+        "violins": {
+            "title": "Display violin plots?",
+            "description": "controls initial display of violin plots",
+            "default": false,
+            "type": "boolean"
+        },
+        "missingValues": {
+            "title": "Missing Values",
+            "description": "an array of strings that identify missing values in both the measure and result variables",
+            "defaultArray": [
+                "",
+                "NA",
+                "N/A"
+            ],
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "visits_without_data": {
+            "title": "Display visits without data?",
+            "description": "controls display of visits without data for the current measure",
+            "default": false,
+            "type": "boolean"
+        },
+        "unscheduled_visits": {
+            "title": "Display unscheduled visits?",
+            "description": "controls display of unscheduled visits",
+            "default": false,
+            "type": "boolean"
+        },
+        "unscheduled_visit_pattern": {
+            "title": "Unscheduled Visit Pattern",
+            "description": "a regular expression that identifies unscheduled visits",
+            "default": "/unscheduled|early termination/i",
+            "type": "string"
+        },
+        "unscheduled_visit_values": {
+            "title": "Unscheduled Visit List",
+            "description": "an array of strings that identify unscheduled visits; overrides unscheduled_visit_pattern",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
