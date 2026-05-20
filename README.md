@@ -81,3 +81,17 @@ Click [here](https://rhoinc.github.io/safety-results-over-time/test-page/) to op
 - [API](https://github.com/RhoInc/safety-results-over-time/wiki/API)
 - [Technical Documentation](https://github.com/RhoInc/safety-results-over-time/wiki/Technical-Documentation) 
 - [Data Guidelines](https://github.com/RhoInc/safety-results-over-time/wiki/Data-Guidelines)
+
+## P004 nextgen functional requirements status
+
+This section tracks the nextgen Chart.js spike against the legacy wiki requirements. The current spike is intentionally partial; unmet items become migration backlog before any replacement release.
+
+| Requirement area | Legacy requirement summary | Spike status |
+|---|---|---|
+| Measure filter | Select the lab/safety measure displayed. | Implemented in spike. |
+| Configured filters | Filter by pre-selected characteristics. | Partial: treatment group and sex filters implemented. |
+| Participant count | Display participants shown and percentage of total. | Implemented in spike. |
+| Y-axis limits | Set lower and upper y-axis limits. | Implemented in spike. |
+| Results over time | Display measure summaries over visit/time, usually by group. | Partial: mean by visit and treatment group implemented. |
+| Linked listing | View filtered records underlying the plot. | Partial: click path shows filtered record listing. |
+| Regression coverage | Validate measure/filter/y-axis changes, participant count, tooltip/listing, and grouping. | Not started; requires automated browser tests. |
